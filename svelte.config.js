@@ -5,7 +5,7 @@ import preprocess from 'svelte-preprocess';
 const config = {
 	preprocess: preprocess({
 		scss: {
-			prependData: "@import './src/lib/style/global.scss';"
+			prependData: "@import './src/style/global.scss';"
 		}
 	}),
 
