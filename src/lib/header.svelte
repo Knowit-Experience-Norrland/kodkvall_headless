@@ -2,7 +2,7 @@
 </script>
 
 <div class="header">
-	<ul>
+	<ul class="container">
 		<li>
 			<a class="btn" href="/">Home</a>
 		</li>

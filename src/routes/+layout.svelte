@@ -1,6 +1,8 @@
 <script lang="ts">
+	import Footer from '$lib/footer.svelte';
 	import Header from '$lib/header.svelte';
 </script>
+
 <svelte:head>
 	<title>Headless</title>
 	<meta
@@ -9,9 +11,12 @@
 	/>
 </svelte:head>
 
-<div class="container">
+<div class="app">
 	<Header />
-	<slot />
+	<main class="container">
+		<slot />
+	</main>
+	<Footer />
 </div>
 
 <style lang="scss">
@@ -90,9 +95,9 @@
 			}
 		}
 
-    img {
-      width: 100%;
-    }
+		img {
+			width: 100%;
+		}
 
 		.container {
 			width: calc(100% - 2rem);
@@ -110,4 +115,12 @@
 			}
 		}
 	}
+  .app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    padding: 2rem 0;
+  }
 </style>
