@@ -1,4 +1,5 @@
-export const prerender = true;
+export const prerender = false;
+
 import type { PageServerLoad } from './$types';
 import { request } from 'graphql-request';
 import {
