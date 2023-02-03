@@ -52,7 +52,7 @@ export const ALL_BLOGS_QUERY = gql`
 `;
 
 export const SINGLE_BLOG_QUERY = gql`
-	query Blog($where: BlogWhereUniqueInput!, $stage: Stage!) {
+	query SingleBlog($where: BlogWhereUniqueInput!, $stage: Stage!) {
 		blog(where: $where, stage: $stage) {
 			id
 			title
