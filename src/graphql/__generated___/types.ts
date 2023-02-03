@@ -5743,10 +5743,10 @@ export type AllBlogsQueryVariables = Exact<{
 
 export type AllBlogsQuery = { __typename?: 'Query', blogs: Array<{ __typename?: 'Blog', id: string, slug: string, title: string, preamble?: string | null, publishedAt?: any | null, createdBy?: { __typename?: 'User', id: string, name: string } | null }> };
 
-export type BlogQueryVariables = Exact<{
+export type SingleBlogQueryVariables = Exact<{
   where: BlogWhereUniqueInput;
   stage: Stage;
 }>;
 
 
-export type BlogQuery = { __typename?: 'Query', blog?: { __typename?: 'Blog', id: string, title: string, preamble?: string | null, publishedAt?: any | null, text: { __typename?: 'RichText', markdown: string }, createdBy?: { __typename?: 'User', id: string, name: string, picture?: string | null } | null } | null };
+export type SingleBlogQuery = { __typename?: 'Query', blog?: { __typename?: 'Blog', id: string, title: string, preamble?: string | null, publishedAt?: any | null, text: { __typename?: 'RichText', markdown: string }, createdBy?: { __typename?: 'User', id: string, name: string, picture?: string | null } | null } | null };
