@@ -6,10 +6,11 @@ import Hero from '$lib/hero.svelte';
 
 	const hasData = data?.portfolio != undefined;
 	const { title, subtitle, content, hero } = data?.portfolio || {};
+	
 </script>
 
 {#if hasData}
-	<Hero heroUrl={hero?.url || ''}/>
+	<Hero heroUrl={hero?.url || ''} subtitle={subtitle || ''}/>
 	<h1>{title}</h1>
 	<h2>{subtitle}</h2>
 	<p class="preamble" />

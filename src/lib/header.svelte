@@ -2,43 +2,75 @@
 </script>
 
 <div class="header">
-    <ul>
-        <li> 
-            <a href="/">Home</a>
-        </li>
-        <li> 
-            <a href="/blog">Blog</a>
-        </li>
-    </ul>
+	<ul>
+		<li>
+			<a class="btn" href="/">Home</a>
+		</li>
+		<li>
+			<a class="btn" href="/blog">Blog</a>
+		</li>
+	</ul>
 </div>
 
 <style lang="scss">
-    .header{
-        width: 100%;
-        height: 5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+	.header {
+		position: relative;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 1rem 0;
+		//linear gradient bg
 
-        ul {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        height: 100%;
-    }
+		&::after {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: radial-gradient(circle, $clr-bg-0 0%, $clr-bg-1 100%);
+			z-index: -1;
+			filter: blur(5px);
+		}
 
-    li {
-        padding: 0 1rem;
-    }
+		ul {
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+			grid-gap: 2rem;
+			justify-items: center;
+			list-style: none;
+			padding: 0;
+		}
 
-    a {
-        text-decoration: none;
-        color: #fff;
-    }
-    }
-    
+		li {
+			width: 75%;
+			height: 100%;
+			min-width: 400px;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+
+		a {
+			text-decoration: none;
+			color: #fff;
+			width: 100%;
+		}
+
+		.btn {
+			position: relative;
+			cursor: pointer;
+			@include box;
+			padding: 1rem;
+			background-color: $clr-bg-0;
+			transition: transform 0.2s;
+			overflow: hidden;
+			&:hover {
+				background-color: $clr-bg-0-hover;
+				transform: scale(1.025);
+			}
+		}
+	}
 </style>

@@ -1,11 +1,12 @@
 <script lang="ts">
 	export let heroUrl: string;
+	export let subtitle: string = '';
 </script>
 
 <div class="hero-block" style={`--test: url("${heroUrl}")`}>
 	{#if heroUrl != ''}
 		<div class="hero-text">
-			<h1>KODKVÄLL</h1>
+			<h1>{subtitle}</h1>
 			<img alt="hero" src={heroUrl} />
 		</div>
 	{/if}
@@ -40,6 +41,8 @@
 			align-items: center;
 
 			h1 {
+				text-transform: uppercase;
+
                 width: 100%;
 				height: 40vh;
                 max-width: 1920px;
@@ -111,7 +114,7 @@
 				position: absolute;
 				display: block;
 				top: 0;
-				left: 50%;
+				left: 35%;
 				width: 100%;
 				max-width: 1152px;
 				height: 100%;
