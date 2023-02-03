@@ -1,3 +1,6 @@
+<script lang="ts">
+	import Header from '$lib/header.svelte';
+</script>
 <svelte:head>
 	<title>Headless</title>
 	<meta
@@ -7,6 +10,7 @@
 </svelte:head>
 
 <div class="container">
+	<Header />
 	<slot />
 </div>
 

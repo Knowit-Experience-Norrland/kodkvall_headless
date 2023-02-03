@@ -20,6 +20,7 @@
 		justify-content: center;
 		align-items: center;
         color: green;
+		margin-bottom: 4rem;
 
 		img {
 			width: 100%;
@@ -39,11 +40,13 @@
 
 			h1 {
                 width: 100%;
+				height: 40vh;
                 max-width: 1920px;
 				position: absolute;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+				top: 0.1%;
 
 				font-size: 9rem;
 				line-height: normal;

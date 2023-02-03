@@ -10,7 +10,6 @@ import Hero from '$lib/hero.svelte';
 
 {#if hasData}
 	<Hero heroUrl={hero?.url || ''}/>
-	<Header />
 	<h1>{title}</h1>
 	<h2>{subtitle}</h2>
 	<p class="preamble" />
