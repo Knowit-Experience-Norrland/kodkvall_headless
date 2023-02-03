@@ -9,7 +9,6 @@
 	const handleClick = (link: string) => {
 		window.location.href = link;
 	};
-	const date = dayjs('2018-08-08').format('YYYY-MM-DD HH:mm'); // display
 </script>
 
 <div>
