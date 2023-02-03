@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let colSize: 'sm' | 'md' | 'lg' = 'md';
+	export let colSize: 'xs' | 'sm' | 'md' | 'lg' = 'md';
 </script>
 
 <div class="grid colSize-{colSize}">
@@ -11,6 +11,9 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
 		gap: 2rem;
+		&.colSize-xs {
+			grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+		}
 		&.colSize-sm {
 			grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 		}

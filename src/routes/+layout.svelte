@@ -89,6 +89,11 @@
 				margin: $m-md;
 			}
 		}
+
+    img {
+      width: 100%;
+    }
+
 		.container {
 			width: calc(100% - 2rem);
 			max-width: $page-width;
