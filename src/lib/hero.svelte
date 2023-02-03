@@ -5,7 +5,7 @@
 <div class="hero-block" style={`--test: url("${heroUrl}")`}>
 	{#if heroUrl != ''}
 		<div class="hero-text">
-			<h1>HERO TEXT</h1>
+			<h1>KODKVÄLL</h1>
 			<img alt="hero" src={heroUrl} />
 		</div>
 	{/if}
@@ -21,6 +21,7 @@
 		align-items: center;
         color: green;
 		margin-bottom: 4rem;
+		text-align: center;
 
 		img {
 			width: 100%;
@@ -75,15 +76,13 @@
                     position: absolute;
                     display: block;
                     top: 0;
-
                     width: 100%;
-                    max-width: 960px;
                     height: 100%;
                     background: linear-gradient(
                         to right,
                         rgb(255, 255, 255) 0%,
                         rgb(255, 255, 255) 45%,
-                        rgba(84, 229, 255, 0) 55%,
+                        rgba(84, 229, 255, 0) 52%,
                         rgba(255, 154, 21, 0) 100%
                     );
                 }
