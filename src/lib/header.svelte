@@ -35,7 +35,7 @@
 		ul {
 			width: 100%;
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 			grid-gap: 2rem;
 			justify-items: center;
 			list-style: none;
@@ -45,7 +45,6 @@
 		li {
 			width: 75%;
 			height: 100%;
-			min-width: 400px;
 
 			display: flex;
 			justify-content: center;
