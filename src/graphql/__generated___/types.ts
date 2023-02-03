@@ -5734,7 +5734,7 @@ export type PortfolioQueryVariables = Exact<{
 }>;
 
 
-export type PortfolioQuery = { __typename?: 'Query', project?: { __typename?: 'Project', id: string, slug?: string | null, title: string, subtitle?: string | null, content: Array<{ __typename?: 'Image' } | { __typename?: 'Text', heading?: string | null, id: string, stage: Stage, text?: { __typename?: 'RichText', html: string, markdown: string, raw: any, text: string } | null }> } | null };
+export type PortfolioQuery = { __typename?: 'Query', project?: { __typename?: 'Project', id: string, slug?: string | null, title: string, subtitle?: string | null, hero?: { __typename?: 'Asset', id: string, url: string } | null, content: Array<{ __typename?: 'Image', id: string, alt: string, image: { __typename?: 'Asset', url: string } } | { __typename?: 'Text', heading?: string | null, id: string, stage: Stage, text?: { __typename?: 'RichText', html: string, markdown: string, raw: any, text: string } | null }> } | null };
 
 export type AllBlogsQueryVariables = Exact<{
   stage: Stage;

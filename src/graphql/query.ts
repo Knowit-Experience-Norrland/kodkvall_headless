@@ -7,6 +7,10 @@ export const PORTFOLIO_QUERY = gql`
 			slug
 			title
 			subtitle
+			hero {
+				id
+				url
+			}
 			content {
 				... on Text {
 					heading
@@ -19,6 +23,13 @@ export const PORTFOLIO_QUERY = gql`
 						text
 					}
 				}
+				... on Image {
+					id
+					alt
+					image {
+						url
+					}
+				}
 			}
 		}
 	}
@@ -28,7 +39,7 @@ export const ALL_BLOGS_QUERY = gql`
 	query AllBlogs($stage: Stage!) {
 		blogs(stage: $stage) {
 			id
-      slug
+			slug
 			createdBy {
 				id
 				name

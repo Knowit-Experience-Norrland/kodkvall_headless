@@ -11,7 +11,7 @@ export const load = async () => {
 		document: PORTFOLIO_QUERY,
 		variables: {
 			where: {
-				slug: 'test-projekt'
+				slug: 'home'
 			}
 		}
 	});
