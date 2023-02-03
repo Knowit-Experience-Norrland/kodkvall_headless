@@ -10,6 +10,7 @@
 		align-items: center;
 		padding: 12px;
 		background: $clr-bg-0;
+		margin-top: auto;
 	}
 
 	footer a {
@@ -19,9 +20,7 @@
 	@media (min-width: 480px) {
 		footer {
 			padding: 12px 0;
-      bottom: 0;
-      margin-top: auto;
+			bottom: 0;
 		}
 	}
 </style>
-
