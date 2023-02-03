@@ -38,15 +38,22 @@
 			align-items: center;
 
 			h1 {
+                width: 100%;
+                max-width: 1920px;
 				position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
 				font-size: 9rem;
 				line-height: normal;
 				font-weight: 900;
-				background-image: var(--test);
+				
+                background-image: var(--test);
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
-                
+
 				-webkit-mask-image: var(--test);
 				-webkit-mask-size: cover;
 				-webkit-mask-repeat: no-repeat;
@@ -59,20 +66,21 @@
 				mask-clip: text;
 				-webkit-text-fill-color: transparent;
 
+                //Make the text on the left side of the hero be white
                 &::before {
                     content: '';
                     position: absolute;
                     display: block;
                     top: 0;
-                    left: 0;
+
                     width: 100%;
                     max-width: 960px;
                     height: 100%;
                     background: linear-gradient(
                         to right,
                         rgb(255, 255, 255) 0%,
-                        rgb(255, 255, 255) 49%,
-                        rgba(84, 229, 255, 0) 50%,
+                        rgb(255, 255, 255) 45%,
+                        rgba(84, 229, 255, 0) 55%,
                         rgba(255, 154, 21, 0) 100%
                     );
                 }
@@ -83,9 +91,9 @@
 				position: absolute;
 				display: block;
 				top: 0;
-				left: 40%;
+				left: 35%;
 				width: 100%;
-				max-width: 1152px;
+				max-width: 1248px;
 				height: 100%;
 				background: linear-gradient(
 					to right,
@@ -101,7 +109,7 @@
 				position: absolute;
 				display: block;
 				top: 0;
-				left: 40%;
+				left: 50%;
 				width: 100%;
 				max-width: 1152px;
 				height: 100%;

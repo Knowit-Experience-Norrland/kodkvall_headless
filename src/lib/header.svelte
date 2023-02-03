@@ -7,7 +7,7 @@
             <a href="/">Home</a>
         </li>
         <li> 
-            <a href="/blogs">Portfolio</a>
+            <a href="/blog">Blog</a>
         </li>
     </ul>
 </div>
