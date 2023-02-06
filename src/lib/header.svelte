@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <div class="header">
 	<ul class="container">
 		<li>

@@ -3,7 +3,7 @@
 	export let subtitle: string = '';
 </script>
 
-<div class="hero-block" style={`--test: url("${heroUrl}")`}>
+<div class="hero-block" style={`--hero-url: url("${heroUrl}")`}>
 	{#if heroUrl != ''}
 		<div class="hero-text">
 			<h1>{subtitle}</h1>
@@ -56,18 +56,19 @@
 				font-size: 9rem;
 				line-height: normal;
 				font-weight: 900;
-
-                background-image: var(--test);
+				
+                background-image: var(--hero-url);
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
-
-				-webkit-mask-image: var(--test);
+				
+				//Make the text clip the bg image
+				-webkit-mask-image: var(--hero-url);
 				-webkit-mask-size: cover;
 				-webkit-mask-repeat: no-repeat;
 				-webkit-mask-position: center;
 				-webkit-mask-clip: text;
-				mask-image: var(--test);
+				mask-image: var(--hero-url);
 				mask-size: cover;
 				mask-repeat: no-repeat;
 				mask-position: center;
@@ -92,6 +93,7 @@
                 }
 			}
 
+			//Add a interesting background to the text
 			&::before {
 				content: '';
 				position: absolute;
@@ -106,7 +108,7 @@
 					rgba(84, 229, 255, 0.526) 0%,
 					rgba(255, 154, 21, 0.543) 100%
 				);
-                background-image: url('./stacked-waves-haikei.svg');
+                background-image: url('/images/stacked-waves-haikei.svg');
                 background-size: cover;
 
 				@media screen and (max-width: 800px) {
@@ -114,6 +116,7 @@
 				}
 			}
 
+			//Add a slight glowing effect to the text + image
             &::after {
 				content: '';
 				position: absolute;
