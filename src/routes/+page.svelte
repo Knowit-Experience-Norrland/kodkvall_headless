@@ -9,9 +9,9 @@
 
 {#if hasData}
 	<Hero heroUrl={hero?.url || ''} subtitle={subtitle || ''} />
-	<h1>{title}</h1>
+	<!-- <h1>{title}</h1>
 	<h2>{subtitle}</h2>
-	<p class="preamble" />
+	<p class="preamble" /> -->
 {:else}
 	<h1>Could not get data from hygraph</h1>
 {/if}

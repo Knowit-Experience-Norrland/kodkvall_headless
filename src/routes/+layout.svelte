@@ -122,5 +122,6 @@
   }
   main {
     padding: 2rem 0;
+	position: relative;
   }
 </style>

@@ -14,38 +14,40 @@
 
 <style lang="scss">
 	.hero-block {
-		width: 100%;
+		width: 100vw;
+    	margin-left: calc(50% - 50vw);
 		max-width: 1920px;
-		height: 50vh;
+		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
         color: green;
-		margin-bottom: 4rem;
+		margin-bottom: -2rem;
+		margin-top: -2rem;
 		text-align: center;
 
 		img {
 			width: 100%;
 			height: 100%;
+			max-height: 540px;
 			object-fit: cover;
             z-index: -1;
 		}
 
 		.hero-text {
-			position: fixed;
 			width: 100%;
 			max-width: 1920px;
-			height: 50vh;
+			height: 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			filter: drop-shadow(0 0 5rem rgba(0, 0, 0, 0.5));
+			filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5));
 
 			h1 {
 				text-transform: uppercase;
 
                 width: 100%;
-				height: 50vh;
+				height: 100%;
                 max-width: 1920px;
 				position: absolute;
                 display: flex;
@@ -110,8 +112,9 @@
 				);
                 background-image: url('/images/stacked-waves-haikei.svg');
                 background-size: cover;
+				opacity: 0.85;
 
-				@media screen and (max-width: 800px) {
+				@media screen and (max-width: 500px) {
 					left: 15%;
 				}
 			}
@@ -124,7 +127,7 @@
 				top: 0;
 				left: 35%;
 				width: 100%;
-				max-width: 1152px;
+				max-width: 1248px;
 				height: 100%;
 				background: linear-gradient(
 					to right,
@@ -136,7 +139,7 @@
                 border-radius: 50px;
                 opacity: 0.25;
 
-				@media screen and (max-width: 800px) {
+				@media screen and (max-width: 500px) {
 					left: 15%;
 				}
 			}
