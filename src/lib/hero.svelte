@@ -16,7 +16,6 @@
 	.hero-block {
 		width: 100vw;
     	margin-left: calc(50% - 50vw);
-		max-width: 1920px;
 		height: 100%;
 		display: flex;
 		justify-content: center;
@@ -77,6 +76,7 @@
 				mask-clip: text;
 				-webkit-text-fill-color: transparent;
 
+				
                 //Make the text on the left side of the hero be white
                 &::before {
                     content: '';
@@ -112,7 +112,7 @@
 				);
                 background-image: url('/images/stacked-waves-haikei.svg');
                 background-size: cover;
-				opacity: 0.85;
+				opacity: 0.92;
 
 				@media screen and (max-width: 500px) {
 					left: 15%;
