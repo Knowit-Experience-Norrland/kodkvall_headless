@@ -29,6 +29,9 @@
 			width: 100%;
 			height: 100%;
 			max-height: 540px;
+			@media screen and (min-width: 1921px) {
+				max-height: 50vh;
+			}
 			object-fit: cover;
             z-index: -1;
 		}
@@ -44,10 +47,9 @@
 
 			h1 {
 				text-transform: uppercase;
-
                 width: 100%;
 				height: 100%;
-                max-width: 1920px;
+				max-width: 1920px;
 				position: absolute;
                 display: flex;
                 justify-content: center;
@@ -115,7 +117,7 @@
 				opacity: 0.92;
 
 				@media screen and (max-width: 500px) {
-					left: 15%;
+					left: 30%;
 				}
 			}
 
@@ -140,7 +142,7 @@
                 opacity: 0.25;
 
 				@media screen and (max-width: 500px) {
-					left: 15%;
+					left: 30%;
 				}
 			}
 		}

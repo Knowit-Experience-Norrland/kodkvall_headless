@@ -16,7 +16,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: 1rem 0;
+		padding: 1rem 0;
 		//linear gradient bg
 
 		&::after {
@@ -24,9 +24,9 @@
 			position: absolute;
 			width: 100%;
 			height: 100%;
-			background: radial-gradient(circle, $clr-bg-0 0%, $clr-bg-1 100%);
+			background: radial-gradient(circle, $clr-bg-0 5%, $clr-bg-1 100%);
 			z-index: -1;
-			filter: blur(5px);
+			filter: blur(10px);
 		}
 
 		ul {
