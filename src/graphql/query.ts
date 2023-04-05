@@ -4,6 +4,46 @@ import { gql } from 'graphql-request';
 export const API_URL =
 	'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cldmuilqw1ji601tcbw7sbcmh/master';
 
+const IMAGE_FRAGMENT = gql`
+	fragment Image on Image {
+		id
+		image {
+			url
+			width
+			size
+			mimeType
+			height
+			fileName
+		}
+	}
+`;
+const TEXT_FRAGMENT = gql`
+	fragment Text on Text {
+		heading
+		id
+		stage
+		text {
+			html
+			markdown
+			raw
+			text
+		}
+	}
+`;
+const CONTENT_FRAGMENT = gql`
+	fragment Content on ProjectcontentUnion {
+		__typename
+		... on Text {
+			...Text
+		}
+		... on Image {
+			...Image
+		}
+	}
+	${IMAGE_FRAGMENT}
+	${TEXT_FRAGMENT}
+`;
+
 export const PORTFOLIO_QUERY = gql`
 	query Portfolio($where: ProjectWhereUniqueInput!) {
 		project(where: $where) {
@@ -16,27 +56,11 @@ export const PORTFOLIO_QUERY = gql`
 				url
 			}
 			content {
-				... on Text {
-					heading
-					id
-					stage
-					text {
-						html
-						markdown
-						raw
-						text
-					}
-				}
-				... on Image {
-					id
-					alt
-					image {
-						url
-					}
-				}
+				...Content
 			}
 		}
 	}
+	${CONTENT_FRAGMENT}
 `;
 
 export const ALL_BLOGS_QUERY = gql`
@@ -79,7 +103,7 @@ export const BLOG_COMMENTS_QUERY = gql`
 		comments(where: { blog: { Blog: { id: $blog_id } } }) {
 			id
 			text
-      createdAt
+			createdAt
 		}
 	}
 `;
