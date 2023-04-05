@@ -3,6 +3,7 @@ export const prerender = true;
 import { request } from 'graphql-request';
 import {
 	ALL_BLOGS_QUERY,
+	API_URL,
 	Stage,
 	type AllBlogsQuery,
 	type AllBlogsQueryVariables
@@ -11,7 +12,7 @@ import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
 	const { blogs } = await request<AllBlogsQuery, AllBlogsQueryVariables>({
-		url: 'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cldmuilqw1ji601tcbw7sbcmh/master',
+		url: API_URL,
 		document: ALL_BLOGS_QUERY,
 		variables: {
 			stage: Stage.Published
