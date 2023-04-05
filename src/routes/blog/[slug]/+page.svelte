@@ -41,7 +41,7 @@
 			<h2>Comments</h2>
 			<div class="list">
 				{#if comments.length === 0}
-					<p class="no_comments">No comments at them moment</p>
+					<p class="no_comments">No comments at the moment</p>
 				{/if}
 				{#each comments as comment}
 					<div class="comment">
