@@ -21,7 +21,6 @@
 		justify-content: center;
 		align-items: center;
         color: green;
-		margin-bottom: -2rem;
 		margin-top: -2rem;
 		text-align: center;
 

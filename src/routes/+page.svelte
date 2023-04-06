@@ -11,8 +11,6 @@
 
 {#if hasData}
 	<Hero heroUrl={hero?.url || ''} subtitle={subtitle || ''} />
-	<h1>{title}</h1>
-	<h2>{subtitle}</h2>
 	<Blocks {contents} />
 {:else}
 	<h1>Could not get data from hygraph</h1>
