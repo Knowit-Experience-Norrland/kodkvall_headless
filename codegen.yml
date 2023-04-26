@@ -1,0 +1,10 @@
+schema: https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cldmuilqw1ji601tcbw7sbcmh/master
+documents:
+  - 'src/graphql/**/*.ts'
+generates:
+  src/graphql/__generated___/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      useTypeImports: true
