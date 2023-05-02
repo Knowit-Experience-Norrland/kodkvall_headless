@@ -5852,13 +5852,6 @@ type Content_Text_Fragment = { __typename: 'Text', heading?: string | null, id: 
 
 export type ContentFragment = Content_Image_Fragment | Content_Text_Fragment;
 
-export type PortfolioQueryVariables = Exact<{
-  where: ProjectWhereUniqueInput;
-}>;
-
-
-export type PortfolioQuery = { __typename?: 'Query', project?: { __typename?: 'Project', id: string, slug?: string | null, title: string, subtitle?: string | null, hero?: { __typename?: 'Asset', id: string, url: string } | null, content: Array<{ __typename: 'Image', id: string, image: { __typename?: 'Asset', url: string, width?: number | null, size?: number | null, mimeType?: string | null, height?: number | null, fileName: string } } | { __typename: 'Text', heading?: string | null, id: string, stage: Stage, text?: { __typename?: 'RichText', html: string, markdown: string, raw: any, text: string } | null }> } | null };
-
 export type AllBlogsQueryVariables = Exact<{
   stage: Stage;
 }>;

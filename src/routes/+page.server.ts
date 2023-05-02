@@ -4,9 +4,9 @@ import { request } from 'graphql-request';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	// TODO: request portfolio query
+	// TODO: request page query
 
 	return {
-		portfolio: null
+		page: null
 	};
 }) satisfies PageServerLoad;

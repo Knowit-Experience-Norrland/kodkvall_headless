@@ -4,8 +4,8 @@
 	import Blocks from '$lib/Blocks.svelte';
 	export let data: PageData;
 
-	const hasData = data?.portfolio != undefined;
-	const { subtitle, content, hero } = data?.portfolio || {};
+	const hasData = data?.page != undefined;
+	const { subtitle, content, hero } = data?.page || {};
 </script>
 
 {#if hasData}

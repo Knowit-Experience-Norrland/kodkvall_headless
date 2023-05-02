@@ -13,7 +13,7 @@ const CONTENT_FRAGMENT = gql`
 	${TEXT_FRAGMENT}
 `;
 
-export const PORTFOLIO_QUERY = gql`
+export const PAGE_QUERY = gql`
 	${CONTENT_FRAGMENT}
 `;
 
