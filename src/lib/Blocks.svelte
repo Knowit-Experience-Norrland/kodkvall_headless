@@ -3,14 +3,14 @@
 	import Image from './Image.svelte';
 	import Text from './Text.svelte';
 
-	export let contents: ContentFragment[];
+	export let content: ContentFragment[] = [];
 </script>
 
-{#each contents as content}
-	{#if content.__typename === 'Text'}
-		<Text {content} />
+{#each content as block}
+	{#if block.__typename === 'Text'}
+		<Text content={block} />
 	{/if}
-	{#if content.__typename === 'Image'}
-		<Image {content} />
+	{#if block.__typename === 'Image'}
+		<Image content={block} />
 	{/if}
 {/each}
