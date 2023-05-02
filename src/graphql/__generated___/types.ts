@@ -40,7 +40,7 @@ export type Asset = Node & {
   handle: Scalars['String'];
   /** The height of the file */
   height?: Maybe<Scalars['Float']>;
-  heroProject: Array<Project>;
+  heroPage: Array<Page>;
   /** List of Asset versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -93,16 +93,16 @@ export type AssetDocumentInStagesArgs = {
 
 
 /** Asset system model */
-export type AssetHeroProjectArgs = {
+export type AssetHeroPageArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
-  orderBy?: InputMaybe<ProjectOrderByInput>;
+  orderBy?: InputMaybe<PageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ProjectWhereInput>;
+  where?: InputMaybe<PageWhereInput>;
 };
 
 
@@ -187,7 +187,7 @@ export type AssetCreateInput = {
   fileName: Scalars['String'];
   handle: Scalars['String'];
   height?: InputMaybe<Scalars['Float']>;
-  heroProject?: InputMaybe<ProjectCreateManyInlineInput>;
+  heroPage?: InputMaybe<PageCreateManyInlineInput>;
   imageImage?: InputMaybe<ImageCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
@@ -271,9 +271,9 @@ export type AssetManyWhereInput = {
   documentInStages_every?: InputMaybe<AssetWhereStageInput>;
   documentInStages_none?: InputMaybe<AssetWhereStageInput>;
   documentInStages_some?: InputMaybe<AssetWhereStageInput>;
-  heroProject_every?: InputMaybe<ProjectWhereInput>;
-  heroProject_none?: InputMaybe<ProjectWhereInput>;
-  heroProject_some?: InputMaybe<ProjectWhereInput>;
+  heroPage_every?: InputMaybe<PageWhereInput>;
+  heroPage_none?: InputMaybe<PageWhereInput>;
+  heroPage_some?: InputMaybe<PageWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -365,7 +365,7 @@ export type AssetUpdateInput = {
   fileName?: InputMaybe<Scalars['String']>;
   handle?: InputMaybe<Scalars['String']>;
   height?: InputMaybe<Scalars['Float']>;
-  heroProject?: InputMaybe<ProjectUpdateManyInlineInput>;
+  heroPage?: InputMaybe<PageUpdateManyInlineInput>;
   imageImage?: InputMaybe<ImageUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
@@ -580,9 +580,9 @@ export type AssetWhereInput = {
   height_not?: InputMaybe<Scalars['Float']>;
   /** All values that are not contained in given list. */
   height_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
-  heroProject_every?: InputMaybe<ProjectWhereInput>;
-  heroProject_none?: InputMaybe<ProjectWhereInput>;
-  heroProject_some?: InputMaybe<ProjectWhereInput>;
+  heroPage_every?: InputMaybe<PageWhereInput>;
+  heroPage_none?: InputMaybe<PageWhereInput>;
+  heroPage_some?: InputMaybe<PageWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -2005,14 +2005,14 @@ export enum ImageOrderByInput {
   IdDesc = 'id_DESC'
 }
 
-export type ImageParent = Project;
+export type ImageParent = Page;
 
 export type ImageParentConnectInput = {
-  Project?: InputMaybe<ProjectConnectInput>;
+  Page?: InputMaybe<PageConnectInput>;
 };
 
 export type ImageParentCreateInput = {
-  Project?: InputMaybe<ProjectCreateInput>;
+  Page?: InputMaybe<PageCreateInput>;
 };
 
 export type ImageParentCreateManyInlineInput = {
@@ -2030,7 +2030,7 @@ export type ImageParentCreateOneInlineInput = {
 };
 
 export type ImageParentUpdateInput = {
-  Project?: InputMaybe<ProjectUpdateInput>;
+  Page?: InputMaybe<PageUpdateInput>;
 };
 
 export type ImageParentUpdateManyInlineInput = {
@@ -2051,7 +2051,7 @@ export type ImageParentUpdateManyInlineInput = {
 };
 
 export type ImageParentUpdateManyWithNestedWhereInput = {
-  Project?: InputMaybe<ProjectUpdateManyWithNestedWhereInput>;
+  Page?: InputMaybe<PageUpdateManyWithNestedWhereInput>;
 };
 
 export type ImageParentUpdateOneInlineInput = {
@@ -2070,19 +2070,19 @@ export type ImageParentUpdateOneInlineInput = {
 };
 
 export type ImageParentUpdateWithNestedWhereUniqueInput = {
-  Project?: InputMaybe<ProjectUpdateWithNestedWhereUniqueInput>;
+  Page?: InputMaybe<PageUpdateWithNestedWhereUniqueInput>;
 };
 
 export type ImageParentUpsertWithNestedWhereUniqueInput = {
-  Project?: InputMaybe<ProjectUpsertWithNestedWhereUniqueInput>;
+  Page?: InputMaybe<PageUpsertWithNestedWhereUniqueInput>;
 };
 
 export type ImageParentWhereInput = {
-  Project?: InputMaybe<ProjectWhereInput>;
+  Page?: InputMaybe<PageWhereInput>;
 };
 
 export type ImageParentWhereUniqueInput = {
-  Project?: InputMaybe<ProjectWhereUniqueInput>;
+  Page?: InputMaybe<PageWhereUniqueInput>;
 };
 
 export type ImageResizeInput = {
@@ -2270,8 +2270,8 @@ export type Mutation = {
   createBlog?: Maybe<Blog>;
   /** Create one comment */
   createComment?: Maybe<Comment>;
-  /** Create one project */
-  createProject?: Maybe<Project>;
+  /** Create one page */
+  createPage?: Maybe<Page>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
@@ -2302,14 +2302,14 @@ export type Mutation = {
   /** Delete many Comment documents, return deleted documents */
   deleteManyCommentsConnection: CommentConnection;
   /**
-   * Delete many Project documents
-   * @deprecated Please use the new paginated many mutation (deleteManyProjectsConnection)
+   * Delete many Page documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPagesConnection)
    */
-  deleteManyProjects: BatchPayload;
-  /** Delete many Project documents, return deleted documents */
-  deleteManyProjectsConnection: ProjectConnection;
-  /** Delete one project from _all_ existing stages. Returns deleted document. */
-  deleteProject?: Maybe<Project>;
+  deleteManyPages: BatchPayload;
+  /** Delete many Page documents, return deleted documents */
+  deleteManyPagesConnection: PageConnection;
+  /** Delete one page from _all_ existing stages. Returns deleted document. */
+  deletePage?: Maybe<Page>;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -2342,30 +2342,30 @@ export type Mutation = {
   /** Publish many Comment documents */
   publishManyCommentsConnection: CommentConnection;
   /**
-   * Publish many Project documents
-   * @deprecated Please use the new paginated many mutation (publishManyProjectsConnection)
+   * Publish many Page documents
+   * @deprecated Please use the new paginated many mutation (publishManyPagesConnection)
    */
-  publishManyProjects: BatchPayload;
-  /** Publish many Project documents */
-  publishManyProjectsConnection: ProjectConnection;
-  /** Publish one project */
-  publishProject?: Maybe<Project>;
+  publishManyPages: BatchPayload;
+  /** Publish many Page documents */
+  publishManyPagesConnection: PageConnection;
+  /** Publish one page */
+  publishPage?: Maybe<Page>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one blog */
   schedulePublishBlog?: Maybe<Blog>;
   /** Schedule to publish one comment */
   schedulePublishComment?: Maybe<Comment>;
-  /** Schedule to publish one project */
-  schedulePublishProject?: Maybe<Project>;
+  /** Schedule to publish one page */
+  schedulePublishPage?: Maybe<Page>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one blog from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlog?: Maybe<Blog>;
   /** Unpublish one comment from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishComment?: Maybe<Comment>;
-  /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  scheduleUnpublishProject?: Maybe<Project>;
+  /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishPage?: Maybe<Page>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one blog from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2394,14 +2394,14 @@ export type Mutation = {
   /** Find many Comment documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyCommentsConnection: CommentConnection;
   /**
-   * Unpublish many Project documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyProjectsConnection)
+   * Unpublish many Page documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPagesConnection)
    */
-  unpublishManyProjects: BatchPayload;
-  /** Find many Project documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyProjectsConnection: ProjectConnection;
-  /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishProject?: Maybe<Project>;
+  unpublishManyPages: BatchPayload;
+  /** Find many Page documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPagesConnection: PageConnection;
+  /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPage?: Maybe<Page>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /** Update one blog */
@@ -2430,14 +2430,14 @@ export type Mutation = {
   /** Update many Comment documents */
   updateManyCommentsConnection: CommentConnection;
   /**
-   * Update many projects
-   * @deprecated Please use the new paginated many mutation (updateManyProjectsConnection)
+   * Update many pages
+   * @deprecated Please use the new paginated many mutation (updateManyPagesConnection)
    */
-  updateManyProjects: BatchPayload;
-  /** Update many Project documents */
-  updateManyProjectsConnection: ProjectConnection;
-  /** Update one project */
-  updateProject?: Maybe<Project>;
+  updateManyPages: BatchPayload;
+  /** Update many Page documents */
+  updateManyPagesConnection: PageConnection;
+  /** Update one page */
+  updatePage?: Maybe<Page>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one asset */
@@ -2446,8 +2446,8 @@ export type Mutation = {
   upsertBlog?: Maybe<Blog>;
   /** Upsert one comment */
   upsertComment?: Maybe<Comment>;
-  /** Upsert one project */
-  upsertProject?: Maybe<Project>;
+  /** Upsert one page */
+  upsertPage?: Maybe<Page>;
 };
 
 
@@ -2466,8 +2466,8 @@ export type MutationCreateCommentArgs = {
 };
 
 
-export type MutationCreateProjectArgs = {
-  data: ProjectCreateInput;
+export type MutationCreatePageArgs = {
+  data: PageCreateInput;
 };
 
 
@@ -2536,23 +2536,23 @@ export type MutationDeleteManyCommentsConnectionArgs = {
 };
 
 
-export type MutationDeleteManyProjectsArgs = {
-  where?: InputMaybe<ProjectManyWhereInput>;
+export type MutationDeleteManyPagesArgs = {
+  where?: InputMaybe<PageManyWhereInput>;
 };
 
 
-export type MutationDeleteManyProjectsConnectionArgs = {
+export type MutationDeleteManyPagesConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
   before?: InputMaybe<Scalars['ID']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ProjectManyWhereInput>;
+  where?: InputMaybe<PageManyWhereInput>;
 };
 
 
-export type MutationDeleteProjectArgs = {
-  where: ProjectWhereUniqueInput;
+export type MutationDeletePageArgs = {
+  where: PageWhereUniqueInput;
 };
 
 
@@ -2647,13 +2647,13 @@ export type MutationPublishManyCommentsConnectionArgs = {
 };
 
 
-export type MutationPublishManyProjectsArgs = {
+export type MutationPublishManyPagesArgs = {
   to?: Array<Stage>;
-  where?: InputMaybe<ProjectManyWhereInput>;
+  where?: InputMaybe<PageManyWhereInput>;
 };
 
 
-export type MutationPublishManyProjectsConnectionArgs = {
+export type MutationPublishManyPagesConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
   before?: InputMaybe<Scalars['ID']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -2661,13 +2661,13 @@ export type MutationPublishManyProjectsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
-  where?: InputMaybe<ProjectManyWhereInput>;
+  where?: InputMaybe<PageManyWhereInput>;
 };
 
 
-export type MutationPublishProjectArgs = {
+export type MutationPublishPageArgs = {
   to?: Array<Stage>;
-  where: ProjectWhereUniqueInput;
+  where: PageWhereUniqueInput;
 };
 
 
@@ -2698,11 +2698,11 @@ export type MutationSchedulePublishCommentArgs = {
 };
 
 
-export type MutationSchedulePublishProjectArgs = {
+export type MutationSchedulePublishPageArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
-  where: ProjectWhereUniqueInput;
+  where: PageWhereUniqueInput;
 };
 
 
@@ -2732,11 +2732,11 @@ export type MutationScheduleUnpublishCommentArgs = {
 };
 
 
-export type MutationScheduleUnpublishProjectArgs = {
+export type MutationScheduleUnpublishPageArgs = {
   from?: Array<Stage>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
-  where: ProjectWhereUniqueInput;
+  where: PageWhereUniqueInput;
 };
 
 
@@ -2818,13 +2818,13 @@ export type MutationUnpublishManyCommentsConnectionArgs = {
 };
 
 
-export type MutationUnpublishManyProjectsArgs = {
+export type MutationUnpublishManyPagesArgs = {
   from?: Array<Stage>;
-  where?: InputMaybe<ProjectManyWhereInput>;
+  where?: InputMaybe<PageManyWhereInput>;
 };
 
 
-export type MutationUnpublishManyProjectsConnectionArgs = {
+export type MutationUnpublishManyPagesConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
   before?: InputMaybe<Scalars['ID']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -2832,13 +2832,13 @@ export type MutationUnpublishManyProjectsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
-  where?: InputMaybe<ProjectManyWhereInput>;
+  where?: InputMaybe<PageManyWhereInput>;
 };
 
 
-export type MutationUnpublishProjectArgs = {
+export type MutationUnpublishPageArgs = {
   from?: Array<Stage>;
-  where: ProjectWhereUniqueInput;
+  where: PageWhereUniqueInput;
 };
 
 
@@ -2911,26 +2911,26 @@ export type MutationUpdateManyCommentsConnectionArgs = {
 };
 
 
-export type MutationUpdateManyProjectsArgs = {
-  data: ProjectUpdateManyInput;
-  where?: InputMaybe<ProjectManyWhereInput>;
+export type MutationUpdateManyPagesArgs = {
+  data: PageUpdateManyInput;
+  where?: InputMaybe<PageManyWhereInput>;
 };
 
 
-export type MutationUpdateManyProjectsConnectionArgs = {
+export type MutationUpdateManyPagesConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
   before?: InputMaybe<Scalars['ID']>;
-  data: ProjectUpdateManyInput;
+  data: PageUpdateManyInput;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ProjectManyWhereInput>;
+  where?: InputMaybe<PageManyWhereInput>;
 };
 
 
-export type MutationUpdateProjectArgs = {
-  data: ProjectUpdateInput;
-  where: ProjectWhereUniqueInput;
+export type MutationUpdatePageArgs = {
+  data: PageUpdateInput;
+  where: PageWhereUniqueInput;
 };
 
 
@@ -2958,9 +2958,9 @@ export type MutationUpsertCommentArgs = {
 };
 
 
-export type MutationUpsertProjectArgs = {
-  upsert: ProjectUpsertInput;
-  where: ProjectWhereUniqueInput;
+export type MutationUpsertPageArgs = {
+  upsert: PageUpsertInput;
+  where: PageWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -2971,33 +2971,18 @@ export type Node = {
   stage: Stage;
 };
 
-/** Information about pagination in a connection. */
-export type PageInfo = {
-  __typename?: 'PageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean'];
-  /** Number of items in the current page. */
-  pageSize?: Maybe<Scalars['Int']>;
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']>;
-};
-
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type Project = Node & {
-  __typename?: 'Project';
-  content: Array<ProjectcontentUnion>;
+export type Page = Node & {
+  __typename?: 'Page';
+  content: Array<PagecontentUnion>;
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
   /** User that created this document */
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
-  documentInStages: Array<Project>;
+  documentInStages: Array<Page>;
   hero?: Maybe<Asset>;
-  /** List of Project versions */
+  /** List of Page versions */
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
@@ -3019,7 +3004,7 @@ export type Project = Node & {
 
 
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type ProjectContentArgs = {
+export type PageContentArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -3031,14 +3016,14 @@ export type ProjectContentArgs = {
 
 
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type ProjectCreatedByArgs = {
+export type PageCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type ProjectDocumentInStagesArgs = {
+export type PageDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
@@ -3046,14 +3031,14 @@ export type ProjectDocumentInStagesArgs = {
 
 
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type ProjectHeroArgs = {
+export type PageHeroArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type ProjectHistoryArgs = {
+export type PageHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: InputMaybe<Stage>;
@@ -3061,14 +3046,14 @@ export type ProjectHistoryArgs = {
 
 
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type ProjectPublishedByArgs = {
+export type PagePublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type ProjectScheduledInArgs = {
+export type PageScheduledInArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -3081,30 +3066,30 @@ export type ProjectScheduledInArgs = {
 
 
 /** This model can be used, for example, as a simple form on a website, app, database with several text fields already added. */
-export type ProjectUpdatedByArgs = {
+export type PageUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ProjectConnectInput = {
+export type PageConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Document to connect */
-  where: ProjectWhereUniqueInput;
+  where: PageWhereUniqueInput;
 };
 
 /** A connection to a list of items. */
-export type ProjectConnection = {
-  __typename?: 'ProjectConnection';
+export type PageConnection = {
+  __typename?: 'PageConnection';
   aggregate: Aggregate;
   /** A list of edges. */
-  edges: Array<ProjectEdge>;
+  edges: Array<PageEdge>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
 };
 
-export type ProjectCreateInput = {
-  content?: InputMaybe<ProjectcontentUnionCreateManyInlineInput>;
+export type PageCreateInput = {
+  content?: InputMaybe<PagecontentUnionCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   hero?: InputMaybe<AssetCreateOneInlineInput>;
   slug?: InputMaybe<Scalars['String']>;
@@ -3113,43 +3098,58 @@ export type ProjectCreateInput = {
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type ProjectCreateManyInlineInput = {
-  /** Connect multiple existing Project documents */
-  connect?: InputMaybe<Array<ProjectWhereUniqueInput>>;
-  /** Create and connect multiple existing Project documents */
-  create?: InputMaybe<Array<ProjectCreateInput>>;
+export type PageCreateManyInlineInput = {
+  /** Connect multiple existing Page documents */
+  connect?: InputMaybe<Array<PageWhereUniqueInput>>;
+  /** Create and connect multiple existing Page documents */
+  create?: InputMaybe<Array<PageCreateInput>>;
 };
 
-export type ProjectCreateOneInlineInput = {
-  /** Connect one existing Project document */
-  connect?: InputMaybe<ProjectWhereUniqueInput>;
-  /** Create and connect one Project document */
-  create?: InputMaybe<ProjectCreateInput>;
+export type PageCreateOneInlineInput = {
+  /** Connect one existing Page document */
+  connect?: InputMaybe<PageWhereUniqueInput>;
+  /** Create and connect one Page document */
+  create?: InputMaybe<PageCreateInput>;
 };
 
 /** An edge in a connection. */
-export type ProjectEdge = {
-  __typename?: 'ProjectEdge';
+export type PageEdge = {
+  __typename?: 'PageEdge';
   /** A cursor for use in pagination. */
   cursor: Scalars['String'];
   /** The item at the end of the edge. */
-  node: Project;
+  node: Page;
+};
+
+/** Information about pagination in a connection. */
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean'];
+  /** Number of items in the current page. */
+  pageSize?: Maybe<Scalars['Int']>;
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']>;
 };
 
 /** Identifies documents */
-export type ProjectManyWhereInput = {
+export type PageManyWhereInput = {
   /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<ProjectWhereInput>>;
+  AND?: InputMaybe<Array<PageWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<ProjectWhereInput>>;
+  NOT?: InputMaybe<Array<PageWhereInput>>;
   /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<ProjectWhereInput>>;
+  OR?: InputMaybe<Array<PageWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']>;
   /** All values in which the union is empty. */
   content_empty?: InputMaybe<Scalars['Boolean']>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
-  content_some?: InputMaybe<ProjectcontentUnionWhereInput>;
+  content_some?: InputMaybe<PagecontentUnionWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -3166,9 +3166,9 @@ export type ProjectManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
-  documentInStages_every?: InputMaybe<ProjectWhereStageInput>;
-  documentInStages_none?: InputMaybe<ProjectWhereStageInput>;
-  documentInStages_some?: InputMaybe<ProjectWhereStageInput>;
+  documentInStages_every?: InputMaybe<PageWhereStageInput>;
+  documentInStages_none?: InputMaybe<PageWhereStageInput>;
+  documentInStages_some?: InputMaybe<PageWhereStageInput>;
   hero?: InputMaybe<AssetWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
@@ -3283,7 +3283,7 @@ export type ProjectManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum ProjectOrderByInput {
+export enum PageOrderByInput {
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
   IdAsc = 'id_ASC',
@@ -3300,99 +3300,99 @@ export enum ProjectOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC'
 }
 
-export type ProjectUpdateInput = {
-  content?: InputMaybe<ProjectcontentUnionUpdateManyInlineInput>;
+export type PageUpdateInput = {
+  content?: InputMaybe<PagecontentUnionUpdateManyInlineInput>;
   hero?: InputMaybe<AssetUpdateOneInlineInput>;
   slug?: InputMaybe<Scalars['String']>;
   subtitle?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ProjectUpdateManyInlineInput = {
-  /** Connect multiple existing Project documents */
-  connect?: InputMaybe<Array<ProjectConnectInput>>;
-  /** Create and connect multiple Project documents */
-  create?: InputMaybe<Array<ProjectCreateInput>>;
-  /** Delete multiple Project documents */
-  delete?: InputMaybe<Array<ProjectWhereUniqueInput>>;
-  /** Disconnect multiple Project documents */
-  disconnect?: InputMaybe<Array<ProjectWhereUniqueInput>>;
-  /** Override currently-connected documents with multiple existing Project documents */
-  set?: InputMaybe<Array<ProjectWhereUniqueInput>>;
-  /** Update multiple Project documents */
-  update?: InputMaybe<Array<ProjectUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple Project documents */
-  upsert?: InputMaybe<Array<ProjectUpsertWithNestedWhereUniqueInput>>;
+export type PageUpdateManyInlineInput = {
+  /** Connect multiple existing Page documents */
+  connect?: InputMaybe<Array<PageConnectInput>>;
+  /** Create and connect multiple Page documents */
+  create?: InputMaybe<Array<PageCreateInput>>;
+  /** Delete multiple Page documents */
+  delete?: InputMaybe<Array<PageWhereUniqueInput>>;
+  /** Disconnect multiple Page documents */
+  disconnect?: InputMaybe<Array<PageWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Page documents */
+  set?: InputMaybe<Array<PageWhereUniqueInput>>;
+  /** Update multiple Page documents */
+  update?: InputMaybe<Array<PageUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Page documents */
+  upsert?: InputMaybe<Array<PageUpsertWithNestedWhereUniqueInput>>;
 };
 
-export type ProjectUpdateManyInput = {
+export type PageUpdateManyInput = {
   subtitle?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ProjectUpdateManyWithNestedWhereInput = {
+export type PageUpdateManyWithNestedWhereInput = {
   /** Update many input */
-  data: ProjectUpdateManyInput;
+  data: PageUpdateManyInput;
   /** Document search */
-  where: ProjectWhereInput;
+  where: PageWhereInput;
 };
 
-export type ProjectUpdateOneInlineInput = {
-  /** Connect existing Project document */
-  connect?: InputMaybe<ProjectWhereUniqueInput>;
-  /** Create and connect one Project document */
-  create?: InputMaybe<ProjectCreateInput>;
-  /** Delete currently connected Project document */
+export type PageUpdateOneInlineInput = {
+  /** Connect existing Page document */
+  connect?: InputMaybe<PageWhereUniqueInput>;
+  /** Create and connect one Page document */
+  create?: InputMaybe<PageCreateInput>;
+  /** Delete currently connected Page document */
   delete?: InputMaybe<Scalars['Boolean']>;
-  /** Disconnect currently connected Project document */
+  /** Disconnect currently connected Page document */
   disconnect?: InputMaybe<Scalars['Boolean']>;
-  /** Update single Project document */
-  update?: InputMaybe<ProjectUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Project document */
-  upsert?: InputMaybe<ProjectUpsertWithNestedWhereUniqueInput>;
+  /** Update single Page document */
+  update?: InputMaybe<PageUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Page document */
+  upsert?: InputMaybe<PageUpsertWithNestedWhereUniqueInput>;
 };
 
-export type ProjectUpdateWithNestedWhereUniqueInput = {
+export type PageUpdateWithNestedWhereUniqueInput = {
   /** Document to update */
-  data: ProjectUpdateInput;
+  data: PageUpdateInput;
   /** Unique document search */
-  where: ProjectWhereUniqueInput;
+  where: PageWhereUniqueInput;
 };
 
-export type ProjectUpsertInput = {
+export type PageUpsertInput = {
   /** Create document if it didn't exist */
-  create: ProjectCreateInput;
+  create: PageCreateInput;
   /** Update document if it exists */
-  update: ProjectUpdateInput;
+  update: PageUpdateInput;
 };
 
-export type ProjectUpsertWithNestedWhereUniqueInput = {
+export type PageUpsertWithNestedWhereUniqueInput = {
   /** Upsert data */
-  data: ProjectUpsertInput;
+  data: PageUpsertInput;
   /** Unique document search */
-  where: ProjectWhereUniqueInput;
+  where: PageWhereUniqueInput;
 };
 
 /** This contains a set of filters that can be used to compare values internally */
-export type ProjectWhereComparatorInput = {
+export type PageWhereComparatorInput = {
   /** This field can be used to request to check if the entry is outdated by internal comparison */
   outdated_to?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** Identifies documents */
-export type ProjectWhereInput = {
+export type PageWhereInput = {
   /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<ProjectWhereInput>>;
+  AND?: InputMaybe<Array<PageWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<ProjectWhereInput>>;
+  NOT?: InputMaybe<Array<PageWhereInput>>;
   /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<ProjectWhereInput>>;
+  OR?: InputMaybe<Array<PageWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']>;
   /** All values in which the union is empty. */
   content_empty?: InputMaybe<Scalars['Boolean']>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
-  content_some?: InputMaybe<ProjectcontentUnionWhereInput>;
+  content_some?: InputMaybe<PagecontentUnionWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -3409,9 +3409,9 @@ export type ProjectWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
-  documentInStages_every?: InputMaybe<ProjectWhereStageInput>;
-  documentInStages_none?: InputMaybe<ProjectWhereStageInput>;
-  documentInStages_some?: InputMaybe<ProjectWhereStageInput>;
+  documentInStages_every?: InputMaybe<PageWhereStageInput>;
+  documentInStages_none?: InputMaybe<PageWhereStageInput>;
+  documentInStages_some?: InputMaybe<PageWhereStageInput>;
   hero?: InputMaybe<AssetWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
@@ -3527,110 +3527,110 @@ export type ProjectWhereInput = {
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
-export type ProjectWhereStageInput = {
+export type PageWhereStageInput = {
   /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<ProjectWhereStageInput>>;
+  AND?: InputMaybe<Array<PageWhereStageInput>>;
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<ProjectWhereStageInput>>;
+  NOT?: InputMaybe<Array<PageWhereStageInput>>;
   /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<ProjectWhereStageInput>>;
+  OR?: InputMaybe<Array<PageWhereStageInput>>;
   /** This field contains fields which can be set as true or false to specify an internal comparison */
-  compareWithParent?: InputMaybe<ProjectWhereComparatorInput>;
+  compareWithParent?: InputMaybe<PageWhereComparatorInput>;
   /** Specify the stage to compare with */
   stage?: InputMaybe<Stage>;
 };
 
-/** References Project record uniquely */
-export type ProjectWhereUniqueInput = {
+/** References Page record uniquely */
+export type PageWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
   slug?: InputMaybe<Scalars['String']>;
 };
 
-export type ProjectcontentUnion = Image | Text;
+export type PagecontentUnion = Image | Text;
 
-export type ProjectcontentUnionConnectInput = {
+export type PagecontentUnionConnectInput = {
   Image?: InputMaybe<ImageConnectInput>;
   Text?: InputMaybe<TextConnectInput>;
 };
 
-export type ProjectcontentUnionCreateInput = {
+export type PagecontentUnionCreateInput = {
   Image?: InputMaybe<ImageCreateInput>;
   Text?: InputMaybe<TextCreateInput>;
 };
 
-export type ProjectcontentUnionCreateManyInlineInput = {
-  /** Create and connect multiple existing ProjectcontentUnion documents */
-  create?: InputMaybe<Array<ProjectcontentUnionCreateInput>>;
+export type PagecontentUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing PagecontentUnion documents */
+  create?: InputMaybe<Array<PagecontentUnionCreateInput>>;
 };
 
-export type ProjectcontentUnionCreateOneInlineInput = {
-  /** Create and connect one ProjectcontentUnion document */
-  create?: InputMaybe<ProjectcontentUnionCreateInput>;
+export type PagecontentUnionCreateOneInlineInput = {
+  /** Create and connect one PagecontentUnion document */
+  create?: InputMaybe<PagecontentUnionCreateInput>;
 };
 
-export type ProjectcontentUnionCreateWithPositionInput = {
+export type PagecontentUnionCreateWithPositionInput = {
   Image?: InputMaybe<ImageCreateWithPositionInput>;
   Text?: InputMaybe<TextCreateWithPositionInput>;
 };
 
-export type ProjectcontentUnionUpdateInput = {
+export type PagecontentUnionUpdateInput = {
   Image?: InputMaybe<ImageUpdateInput>;
   Text?: InputMaybe<TextUpdateInput>;
 };
 
-export type ProjectcontentUnionUpdateManyInlineInput = {
-  /** Create and connect multiple ProjectcontentUnion component instances */
-  create?: InputMaybe<Array<ProjectcontentUnionCreateWithPositionInput>>;
-  /** Delete multiple ProjectcontentUnion documents */
-  delete?: InputMaybe<Array<ProjectcontentUnionWhereUniqueInput>>;
-  /** Update multiple ProjectcontentUnion component instances */
-  update?: InputMaybe<Array<ProjectcontentUnionUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple ProjectcontentUnion component instances */
-  upsert?: InputMaybe<Array<ProjectcontentUnionUpsertWithNestedWhereUniqueAndPositionInput>>;
+export type PagecontentUnionUpdateManyInlineInput = {
+  /** Create and connect multiple PagecontentUnion component instances */
+  create?: InputMaybe<Array<PagecontentUnionCreateWithPositionInput>>;
+  /** Delete multiple PagecontentUnion documents */
+  delete?: InputMaybe<Array<PagecontentUnionWhereUniqueInput>>;
+  /** Update multiple PagecontentUnion component instances */
+  update?: InputMaybe<Array<PagecontentUnionUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple PagecontentUnion component instances */
+  upsert?: InputMaybe<Array<PagecontentUnionUpsertWithNestedWhereUniqueAndPositionInput>>;
 };
 
-export type ProjectcontentUnionUpdateManyWithNestedWhereInput = {
+export type PagecontentUnionUpdateManyWithNestedWhereInput = {
   Image?: InputMaybe<ImageUpdateManyWithNestedWhereInput>;
   Text?: InputMaybe<TextUpdateManyWithNestedWhereInput>;
 };
 
-export type ProjectcontentUnionUpdateOneInlineInput = {
-  /** Create and connect one ProjectcontentUnion document */
-  create?: InputMaybe<ProjectcontentUnionCreateInput>;
-  /** Delete currently connected ProjectcontentUnion document */
+export type PagecontentUnionUpdateOneInlineInput = {
+  /** Create and connect one PagecontentUnion document */
+  create?: InputMaybe<PagecontentUnionCreateInput>;
+  /** Delete currently connected PagecontentUnion document */
   delete?: InputMaybe<Scalars['Boolean']>;
-  /** Update single ProjectcontentUnion document */
-  update?: InputMaybe<ProjectcontentUnionUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single ProjectcontentUnion document */
-  upsert?: InputMaybe<ProjectcontentUnionUpsertWithNestedWhereUniqueInput>;
+  /** Update single PagecontentUnion document */
+  update?: InputMaybe<PagecontentUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PagecontentUnion document */
+  upsert?: InputMaybe<PagecontentUnionUpsertWithNestedWhereUniqueInput>;
 };
 
-export type ProjectcontentUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+export type PagecontentUnionUpdateWithNestedWhereUniqueAndPositionInput = {
   Image?: InputMaybe<ImageUpdateWithNestedWhereUniqueAndPositionInput>;
   Text?: InputMaybe<TextUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
-export type ProjectcontentUnionUpdateWithNestedWhereUniqueInput = {
+export type PagecontentUnionUpdateWithNestedWhereUniqueInput = {
   Image?: InputMaybe<ImageUpdateWithNestedWhereUniqueInput>;
   Text?: InputMaybe<TextUpdateWithNestedWhereUniqueInput>;
 };
 
-export type ProjectcontentUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+export type PagecontentUnionUpsertWithNestedWhereUniqueAndPositionInput = {
   Image?: InputMaybe<ImageUpsertWithNestedWhereUniqueAndPositionInput>;
   Text?: InputMaybe<TextUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
-export type ProjectcontentUnionUpsertWithNestedWhereUniqueInput = {
+export type PagecontentUnionUpsertWithNestedWhereUniqueInput = {
   Image?: InputMaybe<ImageUpsertWithNestedWhereUniqueInput>;
   Text?: InputMaybe<TextUpsertWithNestedWhereUniqueInput>;
 };
 
-export type ProjectcontentUnionWhereInput = {
+export type PagecontentUnionWhereInput = {
   Image?: InputMaybe<ImageWhereInput>;
   Text?: InputMaybe<TextWhereInput>;
 };
 
-export type ProjectcontentUnionWhereUniqueInput = {
+export type PagecontentUnionWhereUniqueInput = {
   Image?: InputMaybe<ImageWhereUniqueInput>;
   Text?: InputMaybe<TextWhereUniqueInput>;
 };
@@ -3670,14 +3670,14 @@ export type Query = {
   commentsConnection: CommentConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
-  /** Retrieve a single project */
-  project?: Maybe<Project>;
+  /** Retrieve a single page */
+  page?: Maybe<Page>;
   /** Retrieve document version */
-  projectVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple projects */
-  projects: Array<Project>;
-  /** Retrieve multiple projects using the Relay connection interface */
-  projectsConnection: ProjectConnection;
+  pageVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple pages */
+  pages: Array<Page>;
+  /** Retrieve multiple pages using the Relay connection interface */
+  pagesConnection: PageConnection;
   /** Retrieve a single scheduledOperation */
   scheduledOperation?: Maybe<ScheduledOperation>;
   /** Retrieve multiple scheduledOperations */
@@ -3820,41 +3820,41 @@ export type QueryNodeArgs = {
 };
 
 
-export type QueryProjectArgs = {
+export type QueryPageArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
-  where: ProjectWhereUniqueInput;
+  where: PageWhereUniqueInput;
 };
 
 
-export type QueryProjectVersionArgs = {
+export type QueryPageVersionArgs = {
   where: VersionWhereInput;
 };
 
 
-export type QueryProjectsArgs = {
+export type QueryPagesArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: Array<Locale>;
-  orderBy?: InputMaybe<ProjectOrderByInput>;
+  orderBy?: InputMaybe<PageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
-  where?: InputMaybe<ProjectWhereInput>;
+  where?: InputMaybe<PageWhereInput>;
 };
 
 
-export type QueryProjectsConnectionArgs = {
+export type QueryPagesConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: Array<Locale>;
-  orderBy?: InputMaybe<ProjectOrderByInput>;
+  orderBy?: InputMaybe<PageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
-  where?: InputMaybe<ProjectWhereInput>;
+  where?: InputMaybe<PageWhereInput>;
 };
 
 
@@ -4068,7 +4068,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Blog | Comment | Project;
+export type ScheduledOperationAffectedDocument = Asset | Blog | Comment | Page;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -5130,14 +5130,14 @@ export enum TextOrderByInput {
   IdDesc = 'id_DESC'
 }
 
-export type TextParent = Project;
+export type TextParent = Page;
 
 export type TextParentConnectInput = {
-  Project?: InputMaybe<ProjectConnectInput>;
+  Page?: InputMaybe<PageConnectInput>;
 };
 
 export type TextParentCreateInput = {
-  Project?: InputMaybe<ProjectCreateInput>;
+  Page?: InputMaybe<PageCreateInput>;
 };
 
 export type TextParentCreateManyInlineInput = {
@@ -5155,7 +5155,7 @@ export type TextParentCreateOneInlineInput = {
 };
 
 export type TextParentUpdateInput = {
-  Project?: InputMaybe<ProjectUpdateInput>;
+  Page?: InputMaybe<PageUpdateInput>;
 };
 
 export type TextParentUpdateManyInlineInput = {
@@ -5176,7 +5176,7 @@ export type TextParentUpdateManyInlineInput = {
 };
 
 export type TextParentUpdateManyWithNestedWhereInput = {
-  Project?: InputMaybe<ProjectUpdateManyWithNestedWhereInput>;
+  Page?: InputMaybe<PageUpdateManyWithNestedWhereInput>;
 };
 
 export type TextParentUpdateOneInlineInput = {
@@ -5195,19 +5195,19 @@ export type TextParentUpdateOneInlineInput = {
 };
 
 export type TextParentUpdateWithNestedWhereUniqueInput = {
-  Project?: InputMaybe<ProjectUpdateWithNestedWhereUniqueInput>;
+  Page?: InputMaybe<PageUpdateWithNestedWhereUniqueInput>;
 };
 
 export type TextParentUpsertWithNestedWhereUniqueInput = {
-  Project?: InputMaybe<ProjectUpsertWithNestedWhereUniqueInput>;
+  Page?: InputMaybe<PageUpsertWithNestedWhereUniqueInput>;
 };
 
 export type TextParentWhereInput = {
-  Project?: InputMaybe<ProjectWhereInput>;
+  Page?: InputMaybe<PageWhereInput>;
 };
 
 export type TextParentWhereUniqueInput = {
-  Project?: InputMaybe<ProjectWhereUniqueInput>;
+  Page?: InputMaybe<PageWhereUniqueInput>;
 };
 
 export type TextUpdateInput = {
@@ -5852,12 +5852,12 @@ type Content_Text_Fragment = { __typename: 'Text', heading?: string | null, id: 
 
 export type ContentFragment = Content_Image_Fragment | Content_Text_Fragment;
 
-export type PortfolioQueryVariables = Exact<{
-  where: ProjectWhereUniqueInput;
+export type PageQueryVariables = Exact<{
+  where: PageWhereUniqueInput;
 }>;
 
 
-export type PortfolioQuery = { __typename?: 'Query', project?: { __typename?: 'Project', id: string, slug?: string | null, title: string, subtitle?: string | null, hero?: { __typename?: 'Asset', id: string, url: string } | null, content: Array<{ __typename: 'Image', id: string, image: { __typename?: 'Asset', url: string, width?: number | null, size?: number | null, mimeType?: string | null, height?: number | null, fileName: string } } | { __typename: 'Text', heading?: string | null, id: string, stage: Stage, text?: { __typename?: 'RichText', html: string, markdown: string, raw: any, text: string } | null }> } | null };
+export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', id: string, slug?: string | null, title: string, subtitle?: string | null, hero?: { __typename?: 'Asset', id: string, url: string } | null, content: Array<{ __typename: 'Image', id: string, image: { __typename?: 'Asset', url: string, width?: number | null, size?: number | null, mimeType?: string | null, height?: number | null, fileName: string } } | { __typename: 'Text', heading?: string | null, id: string, stage: Stage, text?: { __typename?: 'RichText', html: string, markdown: string, raw: any, text: string } | null }> } | null };
 
 export type AllBlogsQueryVariables = Exact<{
   stage: Stage;

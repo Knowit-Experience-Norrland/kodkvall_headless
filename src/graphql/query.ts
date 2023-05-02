@@ -31,7 +31,7 @@ const TEXT_FRAGMENT = gql`
 	}
 `;
 const CONTENT_FRAGMENT = gql`
-	fragment Content on ProjectcontentUnion {
+	fragment Content on PagecontentUnion {
 		__typename
 		... on Text {
 			...Text
@@ -44,9 +44,9 @@ const CONTENT_FRAGMENT = gql`
 	${TEXT_FRAGMENT}
 `;
 
-export const PORTFOLIO_QUERY = gql`
-	query Portfolio($where: ProjectWhereUniqueInput!) {
-		project(where: $where) {
+export const PAGE_QUERY = gql`
+	query Page($where: PageWhereUniqueInput!) {
+		page(where: $where) {
 			id
 			slug
 			title

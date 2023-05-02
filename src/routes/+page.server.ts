@@ -1,13 +1,13 @@
 export const prerender = true;
 
 import { request } from 'graphql-request';
-import { API_URL, PORTFOLIO_QUERY, type PortfolioQuery, type PortfolioQueryVariables } from '../graphql';
+import { API_URL, PAGE_QUERY, type PageQuery, type PageQueryVariables } from '../graphql';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const { project } = await request<PortfolioQuery, PortfolioQueryVariables>({
+	const { page } = await request<PageQuery, PageQueryVariables>({
 		url: API_URL,
-		document: PORTFOLIO_QUERY,
+		document: PAGE_QUERY,
 		variables: {
 			where: {
 				slug: 'home'
@@ -16,6 +16,6 @@ export const load = (async () => {
 	});
 
 	return {
-		portfolio: project
+		page
 	};
 }) satisfies PageServerLoad;
