@@ -5888,10 +5888,10 @@ export type CommentOnBlogMutationVariables = Exact<{
 
 export type CommentOnBlogMutation = { __typename?: 'Mutation', createComment?: { __typename?: 'Comment', id: string } | null };
 
-export type PublishAndBlogAndCommentMutationVariables = Exact<{
+export type PublishBlogAndCommentMutationVariables = Exact<{
   blog_id: Scalars['ID'];
   comment_id: Scalars['ID'];
 }>;
 
 
-export type PublishAndBlogAndCommentMutation = { __typename?: 'Mutation', publishBlog?: { __typename?: 'Blog', id: string } | null, publishComment?: { __typename?: 'Comment', id: string } | null };
+export type PublishBlogAndCommentMutation = { __typename?: 'Mutation', publishBlog?: { __typename?: 'Blog', id: string } | null, publishComment?: { __typename?: 'Comment', id: string } | null };

@@ -16,6 +16,8 @@ import {
 	type CommentOnBlogMutationVariables,
 	type PublishAndBlogAndCommentMutation,
 	type PublishAndBlogAndCommentMutationVariables,
+	type PublishBlogAndCommentMutation,
+	type PublishBlogAndCommentMutationVariables,
 	type SingleBlogQuery,
 	type SingleBlogQueryVariables
 } from '../../../graphql';
@@ -74,8 +76,8 @@ export const actions = {
 			}
 
 			const { publishBlog, publishComment } = await gqlRequest<
-				PublishAndBlogAndCommentMutation,
-				PublishAndBlogAndCommentMutationVariables
+				PublishBlogAndCommentMutation,
+				PublishBlogAndCommentMutationVariables
 			>({
 				url: API_URL,
 				document: PUBLISH_BLOG_AND_COMMENT_MUTATION,

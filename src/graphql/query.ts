@@ -117,7 +117,7 @@ export const COMMENTS_ON_BLOG_MUTATION = gql`
 `;
 
 export const PUBLISH_BLOG_AND_COMMENT_MUTATION = gql`
-	mutation PublishAndBlogAndComment($blog_id: ID!, $comment_id: ID!) {
+	mutation PublishBlogAndComment($blog_id: ID!, $comment_id: ID!) {
 		publishBlog(to: PUBLISHED, where: { id: $blog_id }) {
 			id
 		}
